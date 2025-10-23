@@ -585,7 +585,8 @@ function applyGlobalDateTimeFormatInTpl($datetimestr){
 
 
 function uploadFiles($absoluteuploaddirpath,$fileinputname,&$objref,$allowedfiletypes=array(),$disallowedfiletypes=array(),$filegenarationfunction=''){
-	echo $filegenarationfunction(1); exit;
+	// SECURITY FIX: Removed debug code that was breaking file uploads
+	// Original line: echo $filegenarationfunction(1); exit;
 
 	$result=array();
 	for($i=0;$i<count($_FILES[$fileinputname]['name']);$i++)

@@ -1,12 +1,33 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// SECURITY: This file should be removed from production or protected with proper authentication
+// and should only be accessible to administrators during data import operations.
+
+error_reporting(E_ERROR | E_PARSE);
+ini_set('display_errors', 0);
 require_once 'inc-oth.php';
-// Database connection details
-$host = 'localhost'; 
-$dbname = 'diryi_yidirectory'; 
-$username = 'diryi_yidirectory'; 
-$password = 'os0qY#fLL$;*';
+
+// SECURITY FIX: Database credentials should be loaded from config.php, not hardcoded
+// Using the same database connection as the main application
+if (!defined('CONST_DB_CREDS')) {
+    die('Configuration not loaded. Please ensure config.php is properly configured.');
+}
+
+// Parse database credentials from config
+$db_creds = CONST_DB_CREDS;
+$mysql_creds = $db_creds['mysql'] ?? [];
+
+if (empty($mysql_creds)) {
+    die('Database configuration not found.');
+}
+
+$host = $mysql_creds['host'] ?? 'localhost';
+$dbname = $mysql_creds['db_name'] ?? '';
+$username = $mysql_creds['db_user'] ?? '';
+$password = $mysql_creds['db_password'] ?? '';
+
+if (empty($dbname) || empty($username)) {
+    die('Incomplete database configuration.');
+}
 
 $default_pswd = \eBizIndia\generatePassword();
 
@@ -98,11 +119,16 @@ if (count($nameParts) === 3) {
             $memberid = $pdo->lastInsertId();
 
             // Insert into the users table
-            $sql2 = "INSERT INTO `users`(`username`, `profile_type`, `profile_id`, `user_type`, `password`, `createdOn`, `createdFrom`) VALUES (?,?,?,?,?,?,?)"; 
+            // SECURITY FIX: Use strong random password instead of weak default '123456'
+            $secure_random_password = \eBizIndia\generatePassword();
+            $sql2 = "INSERT INTO `users`(`username`, `profile_type`, `profile_id`, `user_type`, `password`, `createdOn`, `createdFrom`) VALUES (?,?,?,?,?,?,?)";
             $stmt2 = $pdo->prepare($sql2);
             $stmt2->execute([
-                $data[4], 'member', $memberid, 1, password_hash('123456', PASSWORD_BCRYPT),$current_datetime,$ip_address
+                $data[4], 'member', $memberid, 1, password_hash($secure_random_password, PASSWORD_BCRYPT),$current_datetime,$ip_address
             ]);
+
+            // Log the generated password for admin to send to user
+            echo " | Generated password: " . htmlspecialchars($secure_random_password);
             
             $userid = $pdo->lastInsertId();
             
