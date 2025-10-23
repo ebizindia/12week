@@ -958,7 +958,7 @@ a:focus-visible {
                                 ?>
                                 <span class="task-progress">
                                     <i class="fas fa-check-circle"></i>
-                                    <?= $completed ?>/7 days
+                                    <?= $completed ?>/<?php echo htmlentities($task['weekly_target']); ?> days
                                 </span>
                             </div>
                         </div>

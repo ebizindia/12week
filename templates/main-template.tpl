@@ -10,7 +10,7 @@
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#074d82" />
 <link rel="preload" as="image" href="custom-images/t-logo-lg.png" >
 <link rel="preload" as="style" href="<?php echo CONST_THEMES_CSS_PATH;?>bootstrap.min.css" >
-<link rel="manifest" href="https://12week.ebizindia.com/manifest.json">
+<link rel="manifest" href="<?php echo $this->base_template_data['base_url']; ?>/manifest.json">
 <meta name="theme-color" content="#ff795c">
 <!-- Start Favicon -->
 <meta name="description" content="<?php echo array_key_exists('page_description', $this->base_template_data)?$this->base_template_data['page_description']:'';?>" />
@@ -201,7 +201,7 @@
 <script src="/js/pwa-install.js"></script>
 <script>
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js')
+    navigator.serviceWorker.register('<?php echo $this->base_template_data['base_url']; ?>/service-worker.js')
       .then(reg => console.log('Service Worker registered:', reg.scope))
       .catch(err => console.error('Service Worker error:', err));
   }
