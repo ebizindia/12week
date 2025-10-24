@@ -28,6 +28,9 @@ function getCss($page){
 		case '12-week-leaderboard':
 			//$css_files[]="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css";
 			break;
+		case '12-week-goals':
+			$css_files[]=CONST_THEMES_CUSTOM_CSS_PATH . '12-week-goals.css';
+			break;
 	}
 
 	// $css_files[]=CONST_THEMES_CSS_PATH.'bootstrap-datetimepicker.min.css';
