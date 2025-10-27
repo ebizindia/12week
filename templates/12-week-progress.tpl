@@ -58,7 +58,7 @@ $is_admin = $this->body_template_data['is_admin'];
 .cycle-overview-card {
     border: none;
     border-radius: 12px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #52a2e8;
     box-shadow: 0 4px 20px rgba(0,0,0,0.15);
     overflow: hidden;
 }
@@ -87,7 +87,7 @@ $is_admin = $this->body_template_data['is_admin'];
 }
 
 .chart-card .card-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #52a2e8;
     color: white;
     border: none;
     padding: 20px 25px;
@@ -148,7 +148,7 @@ $is_admin = $this->body_template_data['is_admin'];
 }
 
 .stat-card .card-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #52a2e8;
     color: white;
     border: none;
     padding: 20px 25px;
@@ -184,7 +184,7 @@ $is_admin = $this->body_template_data['is_admin'];
 }
 
 .ranking-table-card .card-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #52a2e8;
     color: white;
     border: none;
     padding: 20px 25px;
@@ -230,7 +230,7 @@ $is_admin = $this->body_template_data['is_admin'];
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #52a2e8;
     color: white;
     border-radius: 50%;
 }
@@ -259,7 +259,7 @@ $is_admin = $this->body_template_data['is_admin'];
 }
 
 .badge.bg-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    background: #52a2e8 !important;
 }
 
 .badge.bg-secondary {

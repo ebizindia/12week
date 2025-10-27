@@ -54,7 +54,7 @@ $is_admin = $this->body_template_data['is_admin'];
 }
 
 .cycle-card .card-header.bg-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    background: #52a2e8 !important;
 }
 
 .cycle-card .card-body {
@@ -148,7 +148,7 @@ $is_admin = $this->body_template_data['is_admin'];
 }
 
 .modal-header-enhanced {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #52a2e8;
     color: white;
     border-radius: 12px 12px 0 0;
 }

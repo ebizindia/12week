@@ -98,7 +98,7 @@ body {
    CYCLE OVERVIEW CARD
    ============================================ */
 .cycle-overview {
-    background: var(--primary-gradient);
+    background: #52a2e8;
     border-radius: var(--radius-lg);
     padding: var(--spacing-md) var(--spacing-xs);
     margin-bottom: var(--spacing-md);
@@ -225,7 +225,7 @@ body {
 }
 
 .content-card-header {
-    background: var(--primary-gradient);
+    background: #52a2e8;
     color: white;
     padding: var(--spacing-md) var(--spacing-xs);
     display: flex;
@@ -405,7 +405,7 @@ body {
 }
 
 .quick-actions-header {
-    background: var(--primary-gradient);
+    background: #52a2e8;
     color: white;
     padding: var(--spacing-md) var(--spacing-xs);
 }
@@ -519,7 +519,7 @@ body {
 }
 
 .btn-primary-action {
-    background: var(--primary-gradient);
+    background: #20c997;
     color: white;
     border: none;
     border-radius: var(--radius-md);

@@ -85,7 +85,7 @@ body {
 }
 
 .btn-add-category {
-    background: var(--primary-gradient);
+    background: #52a2e8;
     color: white;
     border: none;
     border-radius: var(--radius-md);
@@ -110,7 +110,7 @@ body {
 }
 
 .categories-header {
-    background: var(--primary-gradient);
+    background: #52a2e8;
     color: white;
     padding: var(--spacing-md) var(--spacing-xs);
 }
@@ -179,7 +179,7 @@ body {
 }
 
 .stat-badge.badge-primary {
-    background: var(--primary-gradient);
+    background: #52a2e8;
 }
 
 .stat-badge.badge-success {
@@ -265,7 +265,7 @@ body {
 }
 
 .modal-header-modern {
-    background: var(--primary-gradient);
+    background: #52a2e8;
     color: white;
     padding: var(--spacing-lg);
     border: none;
@@ -344,7 +344,7 @@ body {
 }
 
 .btn-primary-modern {
-    background: var(--primary-gradient);
+    background: #52a2e8;
     color: white;
     border: none;
     border-radius: var(--radius-md);
