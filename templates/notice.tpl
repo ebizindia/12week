@@ -56,7 +56,7 @@ body {
 }
 
 .notice-header {
-    background: var(--primary-gradient);
+    background: #52a2e8;
     color: white;
     padding: var(--spacing-md) var(--spacing-sm);
 }

@@ -104,7 +104,7 @@ body {
 }
 
 .btn-header {
-    background: var(--primary-gradient);
+    background: #52a2e8;
     color: white;
     border: none;
     border-radius: var(--radius-md);
@@ -170,7 +170,7 @@ body {
    CYCLE OVERVIEW CARD
    ============================================ */
 .cycle-overview {
-    background: var(--primary-gradient);
+    background: #52a2e8;
     border-radius: var(--radius-lg);
     padding: var(--spacing-md) var(--spacing-xs);
     margin-bottom: var(--spacing-md);
@@ -297,7 +297,7 @@ body {
 }
 
 .member-table-header {
-    background: var(--primary-gradient);
+    background: #52a2e8;
     color: white;
     padding: var(--spacing-md) var(--spacing-xs);
 }
@@ -342,7 +342,7 @@ body {
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background: var(--primary-gradient);
+    background: #52a2e8;
     color: white;
     display: flex;
     align-items: center;
@@ -395,7 +395,7 @@ body {
 }
 
 .stat-badge.badge-primary {
-    background: var(--primary-gradient);
+    background: #52a2e8;
 }
 
 .stat-badge.badge-success {
@@ -429,8 +429,8 @@ body {
 
 .btn-view:hover,
 .btn-view:active {
-    background: var(--primary-gradient);
-    border-color: #667eea;
+    background: #52a2e8;
+    border-color: #52a2e8;
     color: white;
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);

@@ -122,8 +122,8 @@ body {
 
 .btn-back:hover,
 .btn-back:active {
-    background: var(--primary-gradient);
-    border-color: #667eea;
+    background: #52a2e8;
+    border-color: #52a2e8;
     color: white;
     text-decoration: none;
 }
@@ -132,7 +132,7 @@ body {
    CYCLE INFO CARD
    ============================================ */
 .cycle-info-card {
-    background: var(--primary-gradient);
+    background: #52a2e8;
     border-radius: var(--radius-lg);
     padding: var(--spacing-md) var(--spacing-xs);
     margin-bottom: var(--spacing-md);
@@ -287,7 +287,7 @@ body {
 }
 
 .leaderboard-header {
-    background: var(--primary-gradient);
+    background: #52a2e8;
     color: white;
     padding: var(--spacing-md) var(--spacing-xs);
 }
@@ -455,7 +455,7 @@ body {
 }
 
 .side-card-header {
-    background: var(--primary-gradient);
+    background: #52a2e8;
     color: white;
     padding: var(--spacing-sm) var(--spacing-xs);
 }

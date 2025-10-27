@@ -114,7 +114,7 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: var(--primary-gradient);
+    background: #52a2e8;
     color: white;
     padding: 6px 12px;
     border-radius: var(--radius-xl);
@@ -128,7 +128,7 @@ body {
    WEEK NAVIGATION
    ============================================ */
 .week-nav {
-    background: var(--primary-gradient);
+    background: #52a2e8;
     border-radius: var(--radius-lg);
     padding: var(--spacing-sm) var(--spacing-xs);
     margin-bottom: var(--spacing-md);
@@ -283,7 +283,7 @@ body {
 }
 
 .add-goal-btn {
-    background: var(--primary-gradient);
+    background: #20c997;
     color: white;
     border: none;
     border-radius: var(--radius-xl);
@@ -607,7 +607,7 @@ body {
 }
 
 .modal-header-modern {
-    background: var(--primary-gradient);
+    background: #52a2e8;
     color: white;
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
     padding: var(--spacing-lg);
@@ -673,7 +673,7 @@ body {
 }
 
 .btn-primary-modern {
-    background: var(--primary-gradient);
+    background: #52a2e8;
     color: white;
     border: none;
     border-radius: var(--radius-md);
