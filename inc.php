@@ -3,13 +3,28 @@ mb_http_output("UTF-8");
 ob_start("mb_output_handler");
 require_once("config.php");
 
+// SECURITY: Add security headers to protect against common web vulnerabilities
+header("X-Frame-Options: SAMEORIGIN"); // Prevent clickjacking
+header("X-Content-Type-Options: nosniff"); // Prevent MIME sniffing
+header("X-XSS-Protection: 1; mode=block"); // Enable XSS protection in older browsers
+header("Referrer-Policy: strict-origin-when-cross-origin"); // Control referrer information
+header("Permissions-Policy: geolocation=(), microphone=(), camera=()"); // Restrict browser features
+
+// SECURITY: Only enable display_errors in development, not production
 date_default_timezone_set(CONST_TIME_ZONE);
 define('CONST_SESSION_INDEX',CONST_APP_SESSION_BASE_INDEX);
-ini_set('display_errors',1);
 switch(ERRORREPORTING){
-	case "1": error_reporting(E_ALL); break;
-	case "2": error_reporting(E_ERROR | E_PARSE); break;
-	default: error_reporting(0);
+	case "1":
+		error_reporting(E_ALL);
+		ini_set('display_errors', 1); // Only in development
+		break;
+	case "2":
+		error_reporting(E_ERROR | E_PARSE);
+		ini_set('display_errors', 0);
+		break;
+	default:
+		error_reporting(0);
+		ini_set('display_errors', 0);
 }
 
 require_once(CONST_INCLUDES_DIR."/ebiz-autoload.php");

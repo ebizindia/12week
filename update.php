@@ -1,13 +1,33 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// SECURITY: This file should be removed from production or protected with proper authentication
+// and should only be accessible to administrators during data update operations.
+
+error_reporting(E_ERROR | E_PARSE);
+ini_set('display_errors', 0);
 require_once 'inc-oth.php';
 
-// Database connection details
-$host = 'localhost'; 
-$dbname = 'dirmymstar_mym'; 
-$username = 'dirmymstar_mym'; 
-$password = 'g2d*M4T0-3s0';
+// SECURITY FIX: Database credentials should be loaded from config.php, not hardcoded
+// Using the same database connection as the main application
+if (!defined('CONST_DB_CREDS')) {
+    die('Configuration not loaded. Please ensure config.php is properly configured.');
+}
+
+// Parse database credentials from config
+$db_creds = CONST_DB_CREDS;
+$mysql_creds = $db_creds['mysql'] ?? [];
+
+if (empty($mysql_creds)) {
+    die('Database configuration not found.');
+}
+
+$host = $mysql_creds['host'] ?? 'localhost';
+$dbname = $mysql_creds['db_name'] ?? '';
+$username = $mysql_creds['db_user'] ?? '';
+$password = $mysql_creds['db_password'] ?? '';
+
+if (empty($dbname) || empty($username)) {
+    die('Incomplete database configuration.');
+}
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);

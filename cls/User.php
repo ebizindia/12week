@@ -28,7 +28,9 @@ class User{
 
 	function setUserStatus($userID,$status){
 		$this->last_mysql_error_code = $this->last_sqlstate_code='';
-		$sql="UPDATE `" . CONST_TBL_PREFIX . "users` set `status`='$status' WHERE `id`=$userID ";
+		// SECURITY FIX: Use prepared statements to prevent SQL injection
+		$userID = (int)$userID; // Cast to integer for safety
+		$sql="UPDATE `" . CONST_TBL_PREFIX . "users` SET `status`=:status WHERE `id`=:userID";
 
 		$error_details_to_log = [];
 		$error_details_to_log['at'] = date('Y-m-d H:i:s');
@@ -38,7 +40,9 @@ class User{
 		$error_details_to_log['status'] = $status;
 
 		try{
-			$res=$this->db_conn->exec($sql);
+			$stmt = $this->db_conn->prepare($sql);
+			$stmt->execute([':status' => $status, ':userID' => $userID]);
+			$res = $stmt->rowCount();
 
 			if($res===false){
 				return false;
@@ -75,19 +79,24 @@ class User{
 
 		$this->last_mysql_error_code = $this->last_sqlstate_code='';
 
-
-		$sql="DELETE from `" . CONST_TBL_PREFIX . "users` WHERE `id`=$userid ";
+		// SECURITY FIX: Use prepared statements to prevent SQL injection
+		$sql="DELETE FROM `" . CONST_TBL_PREFIX . "users` WHERE `id`=:userid";
 		$error_details_to_log = [];
 		$error_details_to_log['at'] = date('Y-m-d H:i:s');
 		$error_details_to_log['method'] = "deleteUser";
 		$error_details_to_log['sql'] = $sql;
-		$error_details_to_log['userID'] = $userID;
+		$error_details_to_log['userID'] = $userid;
 
 
 		try{
-			$affectedrows=$this->db_conn->exec($sql); 					//
-			$sql="DELETE from `" . CONST_TBL_PREFIX . "sessions` WHERE `user_id`=$userid ";
-			$this->db_conn->exec($sql);
+			$stmt = $this->db_conn->prepare($sql);
+			$stmt->execute([':userid' => $userid]);
+			$affectedrows = $stmt->rowCount();
+
+			// Delete sessions using prepared statement
+			$sql_sessions = "DELETE FROM `" . CONST_TBL_PREFIX . "sessions` WHERE `user_id`=:userid";
+			$stmt_sessions = $this->db_conn->prepare($sql_sessions);
+			$stmt_sessions->execute([':userid' => $userid]);
 			if($affectedrows==0){
 				$error_details_to_log['mysql_error'] = $this->db_conn->errorInfo();
 				$error_details_to_log['affected rows'] = 0;
