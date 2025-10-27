@@ -817,7 +817,7 @@ public function saveAgendaDetails($agendas, $meeting_id) {
 		$this->last_mysql_error_code = $this->last_sqlstate_code='';
 
 
-		$sql="DELETE from $table WHERE `id`=$meeting_id ";
+		$sql="DELETE from $table WHERE `id`=:meeting_id ";
 		$error_details_to_log = [];
 		$error_details_to_log['at'] = date('Y-m-d H:i:s');
 		$error_details_to_log['method'] = "deleteMeeting";
@@ -827,7 +827,7 @@ public function saveAgendaDetails($agendas, $meeting_id) {
 
 		try{
 			
-			 $stmt = PDOConn::query($sql);
+			 $stmt = PDOConn::query($sql, [], [':meeting_id' => $meeting_id]);
 
 						
 			
