@@ -4,7 +4,9 @@ class Token{
 	const life_time = 600; // in sec - 10 minutes	
 
 	public static function generate(){
-		$token = md5(random_bytes(64));
+		// SECURITY IMPROVEMENT: Use bin2hex instead of md5 for token generation
+		// This creates a 64-byte (128-character hex) token from cryptographically secure random bytes
+		$token = bin2hex(random_bytes(32));
 		$_SESSION['token'] = [];
 		$_SESSION['token'][$token] = time()+self::life_time; // valid for next 10 minutes
 		return $token;
