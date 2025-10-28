@@ -122,6 +122,7 @@ if(isset($_SESSION['userobj']) && $_SESSION['userobj']!=''){
 			if($loggedindata[0]['loggedin']==1){
 				$loggedin=1; // logged in
 				$adminmenulist=$loggedindata[1];
+                session_regenerate_id(true); // regenerate session id to handle session fixation attack. Delete any old session data
 			}
 		}else{
 			$loginstats['login_status']='0';
