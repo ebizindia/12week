@@ -54,8 +54,12 @@ if(CONST_MAINTENANCE_MODE && (empty(CONST_MTNC_MODE_EXCL_IP) || !in_array(\eBizI
 
 \eBizIndia\PDOConn::connectToDB('mysql');
 
+// SECURITY FIX: Validate dev_mode parameter to prevent XSS and ensure it's a valid integer
 if(isset($_GET['dev_mode'])){
-	$_SESSION['dev_mode']=$_GET['dev_mode'];
+	$dev_mode = filter_input(INPUT_GET, 'dev_mode', FILTER_VALIDATE_INT);
+	if($dev_mode !== false && $dev_mode !== null && in_array($dev_mode, [0, 1])){
+		$_SESSION['dev_mode'] = $dev_mode;
+	}
 }
 
 $script=pathinfo($_SERVER['SCRIPT_NAME']);

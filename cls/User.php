@@ -123,12 +123,14 @@ class User{
 
 	function checkEmailDuplicy($email,$id) // apparently not being used anywhere
 	{
-		$sql="SELECT `email` from `" . CONST_TBL_PREFIX . "users` where `email` = '".$email."' and `id` != '".$id."'";
+		// SECURITY FIX: Use prepared statements to prevent SQL injection
+		$sql="SELECT `email` from `" . CONST_TBL_PREFIX . "users` where `email` = :email and `id` != :id";
 
-		$res=$this->db_conn->query($sql);
+		$stmt = $this->db_conn->prepare($sql);
+		$stmt->execute([':email' => $email, ':id' => $id]);
 		$useremail=array();
-		if(isset($res))	{
-			$row[]=$res->fetch(\PDO::FETCH_ASSOC);
+		if(isset($stmt))	{
+			$row[]=$stmt->fetch(\PDO::FETCH_ASSOC);
 		}
 			return	$row;
 	}
@@ -139,14 +141,17 @@ class User{
 		if($userid<=0 || (!empty($roleids) && !is_array($roleids)) )
 			return false;
 		$int_data = [];
-		$sql = "DELETE from `" . CONST_TBL_PREFIX . "user_roles` WHERE user_id=$userid";
+		// SECURITY FIX: Use parameterized query for user_id
+		$int_data[':userid'] = $userid;
+		$sql = "DELETE from `" . CONST_TBL_PREFIX . "user_roles` WHERE user_id=:userid";
 
 		if(!empty($roleids)){
 			$place_holders = [];
 			foreach ($roleids as $key => $rid) {
 				$key = ":id_{$key}_";
 				$place_holders[] = $key;
-				$int_data[$key] = $id;
+				// BUG FIX: Changed $id to $rid (was undefined variable)
+				$int_data[$key] = $rid;
 			}
 			$sql .= " AND role_id in(".implode(',',$place_holders).") " ;
 
